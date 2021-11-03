@@ -1,0 +1,46 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>仅仅只是扫雷</title>
+		<link rel="stylesheet" type="text/css" href="index.css"></link>
+	</head>
+	<body>
+		<div id="A">
+			<div class="ld_box">
+				<div title="向右拉开局" class="ld"> 》》</div>
+			</div>
+			<button id="come_back">重开本局</button>
+			<div class="kk">
+				<span class="chuda">时间：</span><input  readonly="true" class="chuda" value="0"/>
+				<span class="chuda ds">地雷：</span>
+				<input readonly="true" class="chuda"/>
+			</div>
+			<div class="di">
+				<div class="cr_di"></div>
+			</div>
+			<div class="num_box">
+				<input type="text" class="num_inp" value="9*9" placeholder="总数"/>
+				<input type="text" class="lei_inp" value="10" placeholder="雷数"/>
+				<button>确定</button>
+			</div>
+		</div>
+		<button id="rule">规则</button>
+		<div id="B">
+			<div class="B1"></div>
+			<div class="B2"></div>
+			<div class="B3"></div>
+		</div>
+		<input type="button" value="榜单" id="dian"/>
+		<script src="src/utils/animation.js"></script>
+		<script src="src/utils/dom.js"></script>
+		<script src="src/utils//cookie.js"></script>
+		<script src="src/utils/isPC.js"></script>
+		<script src="src/lib/variable.js"></script>
+		<script src="src/lib/rankingList.js"></script>
+		<script src="src/lib/isPC.js"></script>
+		<script src="src/lib/difficulty.js"></script>
+		<script src="src/lib/index.js"></script>
+	</body>
+</html>
