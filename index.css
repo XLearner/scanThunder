@@ -137,3 +137,11 @@
 	top: 20px;
 	left: 20px;
 }
+
+
+
+.cr_di {
+	background: url(./src/img/background.png) no-repeat 66% center;
+	background-size: cover;
+
+}

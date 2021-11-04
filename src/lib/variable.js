@@ -17,9 +17,9 @@ var	come_back = {};//储存本局.用于重开本局
 var b_back = false;//判断是否需要重开
 var oD = null;//定时器
 var difficulty = {//雷局
-	num:0,
-	numX:0,
-	numY:0,
-	lei:0,
+	num:0, // 棋盘大小
+	numX:0, // 棋盘宽
+	numY:0, // 棋盘长
+	lei:0, // 雷数
 }
 oDivdi.red = 0;
