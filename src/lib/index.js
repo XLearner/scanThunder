@@ -24,6 +24,7 @@ function fnJC(fn){//集成的
 	oDivdi.red=0;
 	aInput[1].value= difficulty.lei - oDivdi.red;
 	if(fn)fn();
+	// 此处点击事件，只在第一次点击时有用
 	oDivdi.onclick = function(e){
 		var oButton = e.target;
 		if(oButton.nodeName == 'BUTTON'){
@@ -31,6 +32,21 @@ function fnJC(fn){//集成的
 				come_back = false;
 				fnL(oButton);//设置雷数
 			}
+			// 确保第一次点击时 周围雷数只能为0
+			oButton = filterEmptyItem(oButton);
+			// let i = 0;
+			// let stack = [];
+			// stack.push(...oButton.)
+			// while(oButton.zi !== 0 && i < difficulty.num) {
+			// 	let tempButton = oButton.aA.filter(ele=>ele.zi===0);
+			// 	if (tempButton.length > 0) {
+			// 		oButton = tempButton[0];
+			// 	} else {
+			// 		tempButton = oButton.aA.filter(ele=>ele.zi!="雷");
+			// 		oButton = tempButton[0];
+			// 	}
+			// 	i++;
+			// }
 			fnRemove(oButton);//排雷
 			fnKS();//计时
 			fnEvent();//事件
@@ -122,76 +138,76 @@ function fnM(){//
 		var south = z + difficulty.numX;//南
 		var oButton = stateDom[z].firstElementChild;//清雷按钮
 		if(oButton.zi != '雷'){
-		    if(z % difficulty.numX == 0){//判断是否是每行的第一个//左边
-			    if(z == 0){//上
-					 oButton.aA = [
-						 stateDom[south].firstElementChild,//南
-						 stateDom[z + 1].firstElementChild,//东
-						 stateDom[south + 1].firstElementChild,//东南
-					 ];
-			    }else if(z == difficulty.num-difficulty.numX){//下
-					oButton.aA=[
-						 stateDom[north].firstElementChild,//北
-						 stateDom[z + 1].firstElementChild,//东
-						 stateDom[north + 1].firstElementChild,//东北
-					];
-			    }else{
+			if(z % difficulty.numX == 0){//判断是否是每行的第一个//左边
+				if(z == 0){//上
 					oButton.aA = [
-						 stateDom[north].firstElementChild,//北
-						 stateDom[south].firstElementChild,//南
-						 stateDom[z + 1].firstElementChild,//东
-						 stateDom[north + 1].firstElementChild,//东北
-						 stateDom[south + 1].firstElementChild,//东南
+						stateDom[south].firstElementChild,//南
+						stateDom[z + 1].firstElementChild,//东
+						stateDom[south + 1].firstElementChild,//东南
 					];
-			    }
-		    }else if((z + 1) % difficulty.numX == 0){//右边
+				}else if(z == difficulty.num-difficulty.numX){//下
+				oButton.aA=[
+						stateDom[north].firstElementChild,//北
+						stateDom[z + 1].firstElementChild,//东
+						stateDom[north + 1].firstElementChild,//东北
+				];
+				}else{
+				oButton.aA = [
+						stateDom[north].firstElementChild,//北
+						stateDom[south].firstElementChild,//南
+						stateDom[z + 1].firstElementChild,//东
+						stateDom[north + 1].firstElementChild,//东北
+						stateDom[south + 1].firstElementChild,//东南
+				];
+				}
+			} else if((z + 1) % difficulty.numX == 0){//右边
 				if((z+1)==difficulty.numX){//上
 					oButton.aA = [
-						 stateDom[south].firstElementChild,//南
-						 stateDom[z - 1].firstElementChild,//西
-						 stateDom[south - 1].firstElementChild,//西南
+						stateDom[south].firstElementChild,//南
+						stateDom[z - 1].firstElementChild,//西
+						stateDom[south - 1].firstElementChild,//西南
 					];
 				}else if(z+1==difficulty.num){//下
 					oButton.aA = [
-						 stateDom[north].firstElementChild,//北
-						 stateDom[z - 1].firstElementChild,//西
-						 stateDom[north - 1].firstElementChild,//西北
+						stateDom[north].firstElementChild,//北
+						stateDom[z - 1].firstElementChild,//西
+						stateDom[north - 1].firstElementChild,//西北
 					];
 				}else{
 					oButton.aA = [
-						 stateDom[north].firstElementChild,//北
-						 stateDom[south].firstElementChild,//南
-						 stateDom[z - 1].firstElementChild,//西
-						 stateDom[north - 1].firstElementChild,//西北
-						 stateDom[south - 1].firstElementChild,//西南
+						stateDom[north].firstElementChild,//北
+						stateDom[south].firstElementChild,//南
+						stateDom[z - 1].firstElementChild,//西
+						stateDom[north - 1].firstElementChild,//西北
+						stateDom[south - 1].firstElementChild,//西南
 					];
 				}
-			}else if(z < difficulty.numX){//不是雷，并且余数大于0小于difficulty.numX-1，并且必须第一行//上边
-			    oButton.aA = [
-						 stateDom[south].firstElementChild,//南
-						 stateDom[z - 1].firstElementChild,//西
-						 stateDom[z + 1].firstElementChild,//东
-						 stateDom[south - 1].firstElementChild,//西南
-						 stateDom[south + 1].firstElementChild,//东南
-			    ];
-		    }else if(z > difficulty.num - difficulty.numX){//下边
-			    oButton.aA = [
-						 stateDom[north].firstElementChild,//北
-						 stateDom[z - 1].firstElementChild,//西
-						 stateDom[z + 1].firstElementChild,//东
-						 stateDom[north - 1].firstElementChild,//西北
-						 stateDom[north + 1].firstElementChild,//东北
-			    ];
-			}else{
+			} else if(z < difficulty.numX){//不是雷，并且余数大于0小于difficulty.numX-1，并且必须第一行//上边
 				oButton.aA = [
-						 stateDom[north].firstElementChild,//北
-						 stateDom[south].firstElementChild,//南
-						 stateDom[z - 1].firstElementChild,//西
-						 stateDom[z + 1].firstElementChild,//东
-						 stateDom[north + 1].firstElementChild,//东北
-						 stateDom[south + 1].firstElementChild,//东南
-						 stateDom[north - 1].firstElementChild,//西北
-						 stateDom[south - 1].firstElementChild,//西南
+						stateDom[south].firstElementChild,//南
+						stateDom[z - 1].firstElementChild,//西
+						stateDom[z + 1].firstElementChild,//东
+						stateDom[south - 1].firstElementChild,//西南
+						stateDom[south + 1].firstElementChild,//东南
+				];
+			} else if(z > difficulty.num - difficulty.numX){//下边
+				oButton.aA = [
+						stateDom[north].firstElementChild,//北
+						stateDom[z - 1].firstElementChild,//西
+						stateDom[z + 1].firstElementChild,//东
+						stateDom[north - 1].firstElementChild,//西北
+						stateDom[north + 1].firstElementChild,//东北
+				];
+			} else{
+				oButton.aA = [
+						stateDom[north].firstElementChild,//北
+						stateDom[south].firstElementChild,//南
+						stateDom[z - 1].firstElementChild,//西
+						stateDom[z + 1].firstElementChild,//东
+						stateDom[north + 1].firstElementChild,//东北
+						stateDom[south + 1].firstElementChild,//东南
+						stateDom[north - 1].firstElementChild,//西北
+						stateDom[south - 1].firstElementChild,//西南
 				];
 			}
 			fnText(oButton);

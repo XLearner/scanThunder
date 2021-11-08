@@ -1,3 +1,7 @@
+button {
+	border-color: transparent;
+}
+
 .ds{
 	margin-left:40px;
 }
@@ -20,7 +24,7 @@
 	font-size:16px;
 }
 .di button{
-	background:#00F;
+	background:#009052;
 }
 .kk{
 	margin:20px 63px 20px 63px;
